@@ -1,0 +1,45 @@
+App.js
+import React from 'react';
+import HttpExample from './http_example.js';
+
+const App = () => {
+  return <HttpExample />;
+};
+export default App;
+
+
+http_example.js
+/* eslint-disable prettier/prettier */
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+
+class HttpExample extends Component {
+   state = {
+      data: '',
+   }
+   componentDidMount = () => {
+      fetch('https://jsonplaceholder.typicode.com/posts/1', {
+         method: 'GET',
+      })
+      .then((response) => response.json())
+      .then((responseJson) => {
+         console.log(responseJson);
+         this.setState({
+            data: responseJson,
+         });
+      })
+      .catch((error) => {
+         console.error(error);
+      });
+   }
+   render() {
+      return (
+         <View>
+            <Text>
+               {this.state.data.body}
+            </Text>
+         </View>
+      );
+   }
+}
+export default HttpExample;

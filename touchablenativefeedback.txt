@@ -1,0 +1,44 @@
+App.js
+import React, {useState} from 'react';
+import {View, TouchableNativeFeedback, Text, StyleSheet} from 'react-native';
+
+const Home = props => {
+  const [rippleColor, setRippleColor] = useState(randomHexColor());
+  const [rippleOverflow, setRippleOverflow] = useState(false);
+  return (
+    <View style={styles.container}>
+      <TouchableNativeFeedback
+        onPress={() => {
+          setRippleColor(randomHexColor());
+          setRippleOverflow(!rippleOverflow);
+        }}
+        background={TouchableNativeFeedback.Ripple(
+          rippleColor,
+          rippleOverflow,
+        )}>
+        <View style={styles.touchable}>
+          <Text>Button</Text>
+        </View>
+      </TouchableNativeFeedback>
+    </View>
+  );
+};
+const randomHexColor = () => {
+  return '#000000'.replace(/0/g, function () {
+    /*eslint no-bitwise: ["error", { "allow": ["~"] }] */
+    return (~~(Math.random() * 16)).toString(16);
+  });
+};
+export default Home;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  touchable: {
+    borderWidth: 1,
+    padding: 25,
+    borderColor: 'black',
+    backgroundColor: 'red',
+  },
+});

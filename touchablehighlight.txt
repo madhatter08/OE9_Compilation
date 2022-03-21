@@ -1,0 +1,32 @@
+App.js
+import React from 'react';
+import {View, TouchableHighlight, Text, StyleSheet} from 'react-native';
+
+const App = props => {
+  return (
+    <View style={styles.container}>
+      <TouchableHighlight
+        onPress={() => {
+          // eslint-disable-next-line no-undef
+          backgroundColor = 'yellow';
+        }}>
+        <View style={styles.touchable}>
+          <Text>Button</Text>
+        </View>
+      </TouchableHighlight>
+    </View>
+  );
+};
+export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  touchable: {
+    borderWidth: 1,
+    padding: 25,
+    borderColor: 'black',
+    backgroundColor: 'red',
+  },
+});
